@@ -245,101 +245,25 @@ export const messages: Message[] = [
 ]
 
 export const chatRooms: ChatRoom[] = [
-  {
-    id: 'room-1',
-    name: 'Tech Talk',
-    description: 'Discussion about latest technologies and trends',
-    memberCount: 124,
-    category: 'Technology',
-    isPrivate: false,
-    avatar: '/room-1',
-  },
-  {
-    id: 'room-2',
-    name: 'Design Inspiration',
-    description: 'Share and discuss design ideas and inspiration',
-    memberCount: 89,
-    category: 'Design',
-    isPrivate: false,
-    avatar: '/room-2',
-  },
-  {
-    id: 'room-3',
-    name: 'Startup Hub',
-    description: 'Network with entrepreneurs and startup founders',
-    memberCount: 256,
-    category: 'Business',
-    isPrivate: false,
-    avatar: '/room-3',
-  },
-  {
-    id: 'room-4',
-    name: 'Remote Work',
-    description: 'Tips and discussions about remote work',
-    memberCount: 178,
-    category: 'Lifestyle',
-    isPrivate: false,
-    avatar: '/room-4',
-  },
-  {
-    id: 'room-5',
-    name: 'Web Development',
-    description: 'Share code, ask questions, and learn together',
-    memberCount: 342,
-    category: 'Technology',
-    isPrivate: false,
-    avatar: '/room-5',
-  },
-  {
-    id: 'room-6',
-    name: 'Music Lovers',
-    description: 'Discover and share music with like-minded people',
-    memberCount: 567,
-    category: 'Entertainment',
-    isPrivate: false,
-    avatar: '/room-6',
-  },
-]
+  { id: 'p1', name: 'Spidey', description: 'I am chill, I like real life examples of math & science. I like humor and storytelling.', memberCount: 14, category: 'Student', isPrivate: true, avatar: '' },
+  { id: 'p2', name: 'Ram', description: 'An active listener who listens while you describe your thoughts and feelings freely.', memberCount: 20, category: 'Empathetic', isPrivate: true, avatar: '' },
+  { id: 'p3', name: 'Karthik', description: 'A man built on my own principles. I value resilience, integrity, and wisdom.', memberCount: 19, category: 'Thinker', isPrivate: true, avatar: '' },
+  { id: 'p4', name: 'Ronaldo', description: 'Football is my life. Let’s discuss tactics, matches, and the GOAT debate.', memberCount: 15, category: 'Sports Fan', isPrivate: true, avatar: '' },
+  { id: 'p5', name: 'Luna', description: 'Night owl and book lover. I can talk about mystery novels and poetry for hours.', memberCount: 12, category: 'Reader', isPrivate: true, avatar: '' },
+  { id: 'p6', name: 'Aris', description: 'Philosophical mind. I enjoy debating the meaning of life and ethics.', memberCount: 8, category: 'Philosopher', isPrivate: true, avatar: '' },
+  { id: 'p7', name: 'Maya', description: 'Just here to vibe and share travel stories from around the world.', memberCount: 25, category: 'Traveler', isPrivate: true, avatar: '' },
+  { id: 'p8', name: 'Zen', description: 'Calm and quiet. Let’s have a peaceful conversation about mindfulness.', memberCount: 5, category: 'Meditator', isPrivate: true, avatar: '' },
+  { id: 'p9', name: 'Echo', description: 'Tech enthusiast. Let’s talk about the future of AI and gadgets.', memberCount: 30, category: 'Techie', isPrivate: true, avatar: '' },
+];
 
 export const features: Feature[] = [
-  {
-    id: 1,
-    title: 'Real-time Messaging',
-    description: 'Send and receive messages instantly with real-time synchronization across all devices.',
-    icon: '💬',
-  },
-  {
-    id: 2,
-    title: 'Group Chats',
-    description: 'Create groups and chat with multiple people at once. Perfect for teams and communities.',
-    icon: '👥',
-  },
-  {
-    id: 3,
-    title: 'File Sharing',
-    description: 'Share images, documents, and files easily with drag-and-drop functionality.',
-    icon: '📎',
-  },
-  {
-    id: 4,
-    title: 'Voice & Video',
-    description: 'Make crystal-clear voice and video calls directly from the chat interface.',
-    icon: '📹',
-  },
-  {
-    id: 5,
-    title: 'End-to-End Encryption',
-    description: 'Your conversations are secure with end-to-end encryption for maximum privacy.',
-    icon: '🔒',
-  },
-  {
-    id: 6,
-    title: 'Cross-Platform',
-    description: 'Available on web, iOS, and Android. Stay connected wherever you are.',
-    icon: '📱',
-  },
-]
-
+  { id: 1, title: 'Text-Only Focus', description: 'Pure, distraction-free messaging. No calls or media, just meaningful words.', icon: '✍️' },
+  { id: 2, title: 'Persona Discovery', description: 'Browse unique profiles and connect with personalities that match your vibe.', icon: '🔍' },
+  { id: 3, title: 'Instant Chat', description: 'Start a text conversation immediately with anyone in the gallery.', icon: '💬' },
+  { id: 4, title: 'Total Privacy', description: 'Your conversations are private and text-secured. Chat with peace of mind.', icon: '🛡️' },
+  { id: 5, title: 'Anonymous Vibes', description: 'Connect with strangers across the globe without the pressure of video or audio.', icon: '👤' },
+  { id: 6, title: 'Clean Interface', description: 'A minimalist design focused entirely on the art of conversation.', icon: '✨' },
+];
 export const testimonials: Testimonial[] = [
   {
     id: 1,

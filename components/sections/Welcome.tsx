@@ -36,9 +36,9 @@ export default function Hero() {
             Create someone who gets you
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-  <Link
-    href="/app"
-    className="
+            <Link
+              href="/app"
+              className="
       px-10 py-3 rounded-full font-semibold
       bg-[#0d1425] text-white
       border border-blue-500/50
@@ -48,13 +48,13 @@ export default function Hero() {
       transition-all duration-300
       inline-flex items-center justify-center
     "
-  >
-    Join Yudi <span className="ml-2">→</span>
-  </Link>
-  
-  <Link
-    href="#features"
-    className="
+            >
+              Join Yudi <span className="ml-2">→</span>
+            </Link>
+
+            <Link
+              href="#features"
+              className="
       px-10 py-3 rounded-full font-semibold
       border border-white/20
       text-white/70
@@ -62,10 +62,10 @@ export default function Hero() {
       hover:text-white
       transition-all duration-300
     "
-  >
-    Learn More
-  </Link>
-</div>
+            >
+              Learn More
+            </Link>
+          </div>
         </div>
       </div>
     </section>
