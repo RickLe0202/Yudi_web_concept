@@ -94,13 +94,13 @@ export default function CanvasBackground() {
         if (star.alpha <= 0.2 || star.alpha >= 1) star.alphaDir *= -1
 
         ctx.fillStyle = isDark
-          ? `rgba(255,255,255,${star.alpha})`
-          : `rgba(0,0,0,${star.alpha * 0.25})`
+          ? `rgba(255,255,255,${star.alpha * 0.7})`
+          : `rgba(0,0,0,${star.alpha * 0.7})`
 
         ctx.beginPath()
         ctx.arc(
-          star.x + offsetX * star.speed * 0.2,
-          star.y + offsetY * star.speed * 0.2,
+          star.x + offsetX * star.speed * 1, // star speed move as moving pointer
+          star.y + offsetY * star.speed * 1,
           star.radius,
           0,
           Math.PI * 2
@@ -115,7 +115,7 @@ export default function CanvasBackground() {
       shootingStars.current.forEach((s) => {
         ctx.strokeStyle = isDark
           ? 'rgba(255,255,255,0.8)'
-          : 'rgba(0,0,0,0.6)'
+          : 'rgba(0,0,0,1)'
         ctx.lineWidth = 2
 
         ctx.beginPath()

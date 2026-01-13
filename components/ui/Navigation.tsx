@@ -14,7 +14,10 @@ export default function Navigation() {
     { href: '#testimonials', label: 'Testimonials' },
     { href: '#contact', label: 'Contact' },
     { href: '/app', label: 'App' },
+    { href: '/login', label: 'login' },
+    { href: '/auth', label: 'login' },
 
+    
   ]
 
   return (

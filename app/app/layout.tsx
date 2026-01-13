@@ -10,7 +10,7 @@ export default function AppLayout({
     <div className="min-h-screen flex flex-col">
       <Navigation />
       <main className="flex-grow pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-12xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {children}
         </div>
       </main>
@@ -18,4 +18,3 @@ export default function AppLayout({
     </div>
   )
 }
-
