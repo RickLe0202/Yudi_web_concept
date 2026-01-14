@@ -13,7 +13,7 @@ export default function Navigation() {
     { href: '#features', label: 'Features' },
     { href: '#testimonials', label: 'Testimonials' },
     { href: '#contact', label: 'Contact' },
-    { href: '/auth', label: 'login' },
+    { href: '/auth', label: 'Login' },
   ]
 
   return (

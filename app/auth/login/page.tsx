@@ -20,7 +20,7 @@ export default function LoginPage() {
       return
     }
 
-    router.push('/app/page-1')
+    router.push('/app')
   }
 
   return (
