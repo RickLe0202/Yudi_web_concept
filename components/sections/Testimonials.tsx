@@ -8,7 +8,7 @@ import 'swiper/css'
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative min-h-screen mt-8 flex flex-col justify-center overflow-hidden">
+    <section id="testimonials" className="relative min-h-screen mt-8 md:mt-10 flex flex-col justify-center overflow-hidden">
       {/* Make the animation smoother */}
       <style dangerouslySetInnerHTML={{ __html: `
         .swiper-wrapper {

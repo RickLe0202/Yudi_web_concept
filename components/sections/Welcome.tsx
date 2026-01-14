@@ -4,18 +4,11 @@ import RotatingWord from '@/components/utils/RotatingWord'
 export default function Hero() {
   return (
     <section className="  relative
-    min-h-screen
-    grid
-    place-content-center
-    overflow-hidden
-    transition-colors duration-200">
-      {/* Canvas background */}
-      {/* <div className="absolute inset-0 z-0">
-        <CanvasBackground />
-      </div> */}
-
-      {/* Dark overlay để chữ rõ */}
-      {/* <div className="absolute inset-0 bg-black/0 dark:bg-black/40 z-0 transition-colors" /> */}
+      min-h-screen
+      grid
+      place-content-center
+      overflow-hidden
+      transition-colors duration-200">
 
       {/* Content */}
       <div className="relative z-10 grid min-h-screen place-content-center px-4 text-center">
@@ -39,15 +32,15 @@ export default function Hero() {
             <Link
               href="/app"
               className="
-      px-10 py-3 rounded-full font-semibold
-      bg-[#0d1425] text-white
-      border border-blue-500/50
-      shadow-[0_0_15px_rgba(59,130,246,0.3)]
-      hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]
-      hover:border-blue-400
-      transition-all duration-300
-      inline-flex items-center justify-center
-    "
+                px-10 py-3 rounded-full font-semibold
+                bg-[#0d1425] text-white
+                border border-blue-500/50
+                shadow-[0_0_15px_rgba(59,130,246,0.3)]
+                hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]
+                hover:border-blue-400
+                transition-all duration-300
+                inline-flex items-center justify-center
+              "
             >
               Join Yudi <span className="ml-2">→</span>
             </Link>
@@ -55,13 +48,13 @@ export default function Hero() {
             <Link
               href="#features"
               className="
-      px-10 py-3 rounded-full font-semibold
-      border border-white/20
-      text-white/70
-      hover:bg-white/5
-      hover:text-white
-      transition-all duration-300
-    "
+                px-10 py-3 rounded-full font-semibold
+                border border-slate-400 dark:border-white/20
+                text-slate-600 dark:text-white/70
+                hover:bg-slate-50 dark:hover:bg-white/5
+                hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]
+                transition-all duration-300
+              "
             >
               Learn More
             </Link>

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import Link from 'next/link'
+import AppNavigation from '@/components/ui/AppNavigation'
 
 export default function Page3() {
   const [name, setName] = useState('')
@@ -9,6 +9,11 @@ export default function Page3() {
   const [bio, setBio] = useState('')
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false)
   const [selectedColor, setSelectedColor] = useState('#4285f4')
+  const [spawnedPerson, setSpawnedPerson] = useState<any>(null)
+  const [showAlert, setShowAlert] = useState(false)
+  const [advancedPrompt, setAdvancedPrompt] = useState('')
+  const [tagInput, setTagInput] = useState('')
+  const [tags, setTags] = useState<string[]>(['eccentric', 'humorous', 'whimsical', 'unpredictable', 'playful'])
 
   const vibeOptions = [
     { label: 'Chill', emoji: '🌊' },
@@ -23,24 +28,65 @@ export default function Page3() {
     '#ffb74d', '#81c784'
   ]
 
-  return (
-    <div className="flex items-center justify-center min-h-[90vh] p-4 lg:p-8">
-      {/* MAIN CONTAINER: This creates the consistent border/frame across all pages */}
-      <div className="flex h-[85vh] w-full max-w-[1400px] border border-gray-200 dark:border-white/10 rounded-[2.5rem] bg-white dark:bg-[#0c0e12] overflow-hidden shadow-2xl transition-all">
+  const addTag = () => {
+    if (tagInput.trim() && !tags.includes(tagInput.trim())) {
+      setTags([...tags, tagInput.trim()]);
+      setTagInput(''); // Clears the input box after adding
+    }
+  }
 
-        {/* 1. LEFT MINI SIDEBAR */}
-        <aside className="w-20 border-r border-white/10 flex flex-col items-center py-8 gap-8 bg-white/20 dark:bg-black/20 transition-all">
-          <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg">Y</div>
-          <nav className="flex flex-col gap-6 mt-4">
-            <Link href="/app/page-1" className="p-3 rounded-xl hover:bg-white/10 transition-all duration-200 text-xl opacity-50">💬</Link>
-            <Link href="/app/page-2" className="p-3 rounded-xl hover:bg-white/10 transition-all duration-200  text-xl opacity-50">🧭</Link>
-            <button className="p-3 rounded-xl bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/20">✨</button>
-            <button className="p-3 rounded-xl hover:bg-white/10 transition-all duration-200 text-xl mt-auto opacity-50">⚙️</button>
-          </nav>
-        </aside>
+  const handleSpawn = () => {
+    // Checks if Name or Bio is "plank" (empty)
+    if (!name.trim() || !bio.trim()) {
+      alert("Please fulfill Name and Bio before spawning!");
+      return;
+    }
+
+    // Saves all data into the 'spawnedPerson' state
+    setSpawnedPerson({
+      name,
+      vibe,
+      bio,
+      prompt: advancedPrompt,
+      color: selectedColor,
+      time: new Date().toLocaleTimeString()
+    });
+
+    // Triggers the colorful alert
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 4000); // Auto-hide after 4s
+  }
+
+  const handleSetDefault = () => {
+    setName('Rick');
+    setBio('Mad but fun');
+    setVibe('Sassy');
+    setAdvancedPrompt("Rick is a seasoned purveyor of the delightfully bizarre, having accumulated a lifetime of experiences that would make most people's heads spin. His 'madness' isn't a flaw, but a finely tuned art form – a unique lens through which he views the world, always finding the humor and absurdity in everyday life. He excels at shaking up routines and injecting spontaneity, making him an unforgettable companion who guarantees a good laugh and an unexpected perspective, all while ensuring a genuinely fun and light-hearted atmosphere.")
+    setSelectedColor('#4285f4');
+    setSpawnedPerson(null);
+    setTags(['eccentric', 'humorous', 'whimsical', 'unpredictable', 'playful']);
+    setTagInput('');
+  }
+
+  return (
+    <div className="min-h-screen w-full flex items-center justify-center md:p-4">
+      {showAlert && (
+        <div className="fixed top-10 right-10 z-[100] animate-bounce">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-[2px] rounded-2xl shadow-2xl">
+            <div className="bg-white dark:bg-gray-900 px-6 py-4 rounded-[14px] font-bold text-gray-900 dark:text-white">
+              ✨ Persona Spawned!
+            </div>
+          </div>
+        </div>
+      )}
+      {/* MAIN CONTAINER: This creates the consistent border/frame across all pages */}
+      <div className="flex flex-col md:flex-row h-screen md:h-[88vh] w-full max-w-7xl mx-auto overflow-hidden rounded-none md:rounded-[2.5rem] 
+                    bg-white/60 dark:bg-gray-900/40 backdrop-blur-3xl border border-white/20 shadow-2xl">
+
+        <AppNavigation />
 
         {/* 2. MAIN FORM SECTION (Scrollbar Hidden) */}
-        <section className="flex-1 flex flex-col overflow-y-auto no-scrollbar border-r border-gray-100 dark:border-white/5">
+        <section className="flex-1 flex flex-col overflow-y-auto overflow-y-auto no-scrollbar border-r border-gray-100 dark:border-white/5">
           <div className="p-10 max-w-2xl">
             <header className="mb-10">
               <h1 className="text-4xl font-black text-gray-900 dark:text-white uppercase tracking-tighter italic leading-none">CREATE PERSONA</h1>
@@ -92,7 +138,7 @@ export default function Page3() {
               </div>
 
               {/* ADVANCED OPTIONS ACCORDION */}
-              <div className="bg-gray-100 dark:bg-white/5 rounded-[2rem] overflow-hidden border border-transparent dark:border-white/5">
+              <div className="bg-gray-100 dark:bg-white/5 rounded-[2rem] overflow-hidden border border-transparent dark:border-white/5 transition-all">
                 <button
                   onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
                   className="w-full p-6 flex items-center justify-between text-gray-900 dark:text-white font-bold"
@@ -103,14 +149,15 @@ export default function Page3() {
 
                 {isAdvancedOpen && (
                   <div className="p-6 pt-0 space-y-6">
+                    {/* 1. AGE & GENDER ROW */}
                     <div className="flex gap-4">
                       <div className="flex-1 space-y-2">
-                        <label className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">AGE</label>
-                        <input type="number" defaultValue="25" className="w-full p-3 rounded-xl bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white" />
+                        <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Age</label>
+                        <input type="number" defaultValue="25" className="w-full p-4 rounded-2xl bg-gray-200/50 dark:bg-white/10 border-none text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500/50" />
                       </div>
                       <div className="flex-1 space-y-2">
-                        <label className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">GENDER</label>
-                        <select className="w-full p-3 rounded-xl bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white">
+                        <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Gender</label>
+                        <select className="w-full p-4 rounded-2xl bg-gray-200/50 dark:bg-white/10 border-none text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500/50 appearance-none">
                           <option>Select</option>
                           <option>Male</option>
                           <option>Female</option>
@@ -119,18 +166,77 @@ export default function Page3() {
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <label className="text-[10px] font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest">BODY COLOR</label>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-10 h-10 rounded-full border-4 border-white dark:border-gray-800 shadow-md" style={{ backgroundColor: selectedColor }} />
-                        <span className="font-mono text-xs text-gray-500">{selectedColor}</span>
+                    {/* 2. LANGUAGE */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Language</label>
+                      <select className="w-full p-4 rounded-2xl bg-gray-200/50 dark:bg-white/10 border-none text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500/50 appearance-none">
+                        <option>Select language</option>
+                        <option>English</option>
+                        <option>Vietnamese</option>
+                        <option>Japanese</option>
+                      </select>
+                    </div>
+
+                    {/* 3. USER PROMPT (AI ENHANCED) */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-gray-700 dark:text-gray-300">User Prompt (AI Enhanced)</label>
+                      <textarea
+                        placeholder="Enter prompt details..."
+                        value={advancedPrompt}
+                        onChange={(e) => setAdvancedPrompt(e.target.value)}
+                        className="w-full p-4 h-24 rounded-2xl bg-gray-200/50 dark:bg-white/10 border-none text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500/50 resize-none"
+                      />
+                    </div>
+
+                    {/* 4. TAGS */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Tags</label>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Add tag"
+                          value={tagInput} // Binds to state for auto-fill/clear
+                          onChange={(e) => setTagInput(e.target.value)}
+                          className="flex-1 p-4 rounded-2xl bg-gray-200/50 dark:bg-white/10 border-none text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500/50"
+                        />
+                        <button
+                          type="button"
+                          onClick={addTag}
+                          className="px-6 py-2 bg-white dark:bg-white/10 border border-gray-300 dark:border-white/20 rounded-2xl font-bold text-gray-900 dark:text-white hover:bg-gray-50 transition-all"
+                        >
+                          Add
+                        </button>
                       </div>
-                      <div className="flex flex-wrap gap-2">
+
+                      {/* RENDER SAVED TAGS (Matches image_d4168c.png) */}
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {tags.map((tag) => (
+                          <span key={tag} className="flex items-center gap-2 px-4 py-2 bg-[#0070f3] text-white text-xs font-bold rounded-full">
+                            {tag}
+                            <button
+                              onClick={() => setTags(tags.filter(t => t !== tag))}
+                              className="hover:text-gray-200"
+                            >
+                              ✕
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* 5. BODY COLOR SELECTION */}
+                    <div className="space-y-4">
+                      <label className="text-sm font-bold text-gray-700 dark:text-gray-300">Body Color</label>
+                      <div className="flex items-center gap-4">
+                        <div className="w-16 h-16 rounded-full border-4 border-white dark:border-gray-800 shadow-xl" style={{ backgroundColor: selectedColor }} />
+                        <span className="font-mono text-sm text-gray-500">{selectedColor}</span>
+                      </div>
+                      <div className="flex flex-wrap gap-3">
                         {colors.map(c => (
                           <button
                             key={c}
                             onClick={() => setSelectedColor(c)}
-                            className={`w-8 h-8 rounded-lg transition-transform duration-200 hover:scale-110 ${selectedColor === c ? 'ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-[#0c0e12]' : ''}`}
+                            className={`w-10 h-10 rounded-xl transition-all duration-200 hover:scale-110 active:scale-95 ${selectedColor === c ? 'ring-4 ring-blue-500/30 border-2 border-white dark:border-gray-900' : ''}`}
                             style={{ backgroundColor: c }}
                           />
                         ))}
@@ -140,9 +246,26 @@ export default function Page3() {
                 )}
               </div>
 
-              <button className="w-full bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-3xl font-black text-xl transition-all duration-200 active:scale-[0.98] shadow-xl shadow-blue-500/20">
-                SPAWN PERSONA
-              </button>
+              <div className="flex gap-4">
+                <button
+                  onClick={handleSetDefault}
+                  className="flex-1 bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-white py-5 rounded-3xl font-bold transition-all hover:bg-gray-300"
+                >
+                  SET DEFAULT
+                </button>
+                <button
+                  onClick={handleSpawn}
+                  className="flex-[2] bg-blue-600 hover:bg-blue-500 text-white py-5 rounded-3xl font-black text-xl transition-all shadow-xl shadow-blue-500/20"
+                >
+                  SPAWN PERSONA
+                </button>
+              </div>
+              {spawnedPerson && (
+                <div className="mt-10 p-8 bg-blue-50 dark:bg-blue-500/10 rounded-[2.5rem] border border-blue-200 dark:border-blue-500/20 animate-in fade-in slide-in-from-bottom-4">
+                  <h3 className="text-blue-600 dark:text-blue-400 font-black uppercase text-xs tracking-widest mb-4">Creation Success</h3>
+                  <p className="text-gray-900 dark:text-white font-bold">You spawned <span className="text-blue-600">{spawnedPerson.name}</span> at {spawnedPerson.time}</p>
+                </div>
+              )}
             </div>
           </div>
         </section>
