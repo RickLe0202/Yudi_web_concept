@@ -1,3 +1,13 @@
+const aiFeatures = [
+  { id: 1, label: 'Dynamic Personas' },
+  { id: 2, label: 'Natural Language' },
+  { id: 3, label: 'Context Awareness' },
+  { id: 4, label: 'Custom Training' },
+  { id: 5, label: 'Roleplay Mode' },
+  { id: 6, label: 'Secure & Private' }
+];
+
+
 export default function About() {
   return (
     <section id="about" className="  relative
@@ -25,23 +35,23 @@ export default function About() {
               Your Modern Chat Solution
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-              Yudi is a cutting-edge chat application designed for individuals and teams
-              who value seamless communication. Built with modern technologies, Yudi
-              provides real-time messaging, secure encryption, and an intuitive interface
-              that works across all your devices.
+              Yudi is an advanced AI-powered chat studio where imagination meets intelligence.
+              Create your own custom AI personas with unique personalities, or chat with our
+              growing library of specialized agents built to assist, entertain, and inspire.
             </p>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              Whether you're coordinating with your team, staying in touch with friends,
-              or building communities, Yudi makes communication simple, fast, and secure.
-              Experience the future of messaging today.
+
+            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+              Whether you're building a virtual companion, a coding assistant, or a roleplay
+              character, Yudi provides the tools to bring your AI to life. Step into the future
+              of interactive conversation and start building your AI world today.
             </p>
             <div className="flex flex-wrap gap-2">
-              {['Real-time', 'Secure', 'Cross-platform', 'Group Chats', 'File Sharing', 'Video Calls'].map((feature) => (
+              {aiFeatures.map((feature) => (
                 <span
-                  key={feature}
+                  key={feature.id}
                   className="px-4 py-2 bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300 rounded-full text-sm font-medium"
                 >
-                  {feature}
+                  {feature.label}
                 </span>
               ))}
             </div>

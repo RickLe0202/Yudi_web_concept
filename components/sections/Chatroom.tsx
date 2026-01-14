@@ -1,6 +1,8 @@
 "use client";
 
-import { chatRooms } from '@/lib/mockData'
+import { ChatRoom, chatRooms } from '@/lib/mockData'
+
+
 
 export default function Portfolio() {
   // Taking the first 6 personas to create the exact grid from your image
@@ -30,7 +32,7 @@ export default function Portfolio() {
 
         {/* 3-Column Grid for Desktop, 2 for Tablet, 1 for Mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayRooms.map((persona) => (
+          {displayRooms.map((persona : ChatRoom) => (
             <PersonaCard key={persona.id} persona={persona} />
           ))}
         </div>
@@ -39,7 +41,12 @@ export default function Portfolio() {
   )
 }
 
-function PersonaCard({ persona }) {
+
+interface PersonaProps {
+  persona: ChatRoom;
+}
+
+function PersonaCard({ persona }: PersonaProps ) {
   return (
     <div className="bg-white dark:bg-[#1E293B]/50 backdrop-blur-sm rounded-[2.5rem] p-8 border border-gray-200 dark:border-white/5 flex flex-col justify-between h-[340px] transition-all hover:shadow-lg dark:hover:bg-[#1E293B]/80 hover:scale-[1.02] group">
       <div>

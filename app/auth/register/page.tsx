@@ -9,11 +9,22 @@ export default function RegisterPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    register(email, password)
-    router.push('/app/chat')
+    setError('') // Clear previous errors
+
+    // Call the simple register function
+    const success = register(email, password)
+
+    if (!success) {
+      setError('This email is already registered.')
+      return
+    }
+
+    // If successful, redirect to your app page
+    router.push('/app/page-1')
   }
 
   return (
@@ -26,7 +37,6 @@ export default function RegisterPage() {
         <p className="text-center text-gray-500 mb-8">
           Create account with Yudi
         </p>
-
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <input
@@ -55,6 +65,10 @@ export default function RegisterPage() {
             focus:ring-2 focus:ring-blue-500/50"
           />
 
+          {error && (
+            <p className="text-sm text-red-500 text-center animate-pulse">{error}</p>
+          )}
+
           <button
             type="submit"
             className="w-full py-3 rounded-full font-semibold
@@ -69,7 +83,7 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{' '}
-          <Link href="/auth/login" className="text-primary-600 hover:underline">
+          <Link href="/auth/login" className="text-blue-500 hover:underline">
             Login
           </Link>
         </p>
