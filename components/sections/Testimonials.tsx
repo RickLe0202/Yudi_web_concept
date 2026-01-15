@@ -26,9 +26,9 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Container cho Swiper dọc - Đã bỏ background riêng để dùng background gốc của bạn */}
+        
         <div className="h-[550px] max-w-2xl mx-auto relative">
-          {/* Lớp phủ mờ (Optional) - Giúp card mờ dần khi trôi ra khỏi vùng nhìn thấy */}
+          {/* The blur when the card moving out */}
           <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent to-transparent z-10 pointer-events-none"></div>
 
           <Swiper
@@ -36,7 +36,7 @@ export default function Testimonials() {
             slidesPerView={2.5}
             spaceBetween={30}
             loop={true}
-            speed={7000} // Tăng lên 7000 để trôi chậm hơn nữa nếu muốn
+            speed={7000} //Fast or slow
             autoplay={{
               delay: 0,
               disableOnInteraction: false,

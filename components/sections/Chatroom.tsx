@@ -16,9 +16,6 @@ export default function Portfolio() {
     overflow-hidden
     transition-colors duration-200
     mt-10 md:mt-0">
-      {/* Background Star Effect (Optional) */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] "></div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header matching your screenshot */}

@@ -1,6 +1,5 @@
 'use client'
 import { chatRooms } from '@/lib/mockData'
-import Link from 'next/link'
 import AppNavigation from '@/components/ui/AppNavigation'
 
 export default function ExplorePersona() {

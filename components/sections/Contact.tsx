@@ -47,7 +47,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900 dark:text-gray-100">Location</p>
-                  <p className="text-gray-600 dark:text-gray-400">San Francisco, CA</p>
+                  <p className="text-gray-600 dark:text-gray-400">India</p>
                 </div>
               </div>
             </div>
