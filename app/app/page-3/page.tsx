@@ -273,11 +273,11 @@ export default function Page3() {
         {/* 3. PREVIEW SECTION */}
         <section className="hidden lg:flex w-1/3 bg-gray-50/50 dark:bg-black/10 flex-col items-center justify-center p-12 transition-all">
           <div className="w-full max-w-[320px] aspect-[3/4] rounded-[3rem] bg-gradient-to-br from-blue-500 to-purple-600 p-[2px] shadow-2xl transition-all">
-            {/* Changed bg-[#0c0e12] to bg-white for light mode */}
+            
             <div className="w-full h-full rounded-[2.9rem] bg-white dark:bg-[#0c0e12] overflow-hidden relative flex flex-col transition-all">
 
               <div className="flex-1 flex items-center justify-center relative transition-all">
-                {/* Changed from-[#0c0e12] to from-white for light mode */}
+                
                 <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0c0e12] to-transparent z-10" />
                 <span className="text-9xl filter drop-shadow-2xl z-0" style={{ color: selectedColor }}>
                   {vibeOptions.find(o => o.label === vibe)?.emoji}
@@ -289,12 +289,12 @@ export default function Page3() {
                   {vibe} VIBE
                 </span>
 
-                {/* Changed text-white to text-slate-900 for light mode */}
+                
                 <h2 className="text-3xl font-black text-slate-900 dark:text-white truncate mb-1">
                   {name || 'Unknown'}
                 </h2>
 
-                {/* Changed text-gray-400 to text-slate-500 for light mode */}
+                
                 <p className="text-slate-500 dark:text-gray-400 text-xs line-clamp-2 leading-relaxed font-medium">
                   {bio || 'Ready to start a new journey...'}
                 </p>

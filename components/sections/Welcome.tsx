@@ -30,7 +30,7 @@ export default function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/app"
+              href="/auth/login"
               className="
                 px-10 py-3 rounded-full font-semibold
                 bg-[#0d1425] text-white

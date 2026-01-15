@@ -23,9 +23,8 @@ export default function Page1() {
 
   const activeChat = conversations.find(c => c.id === selectedChatId)
 
-  // 1. WATCH FOR CHAT CHANGES
+  
   useEffect(() => {
-    // This resets the chat to the initial greeting whenever you click a new person
     setChatHistory([
       { id: 1, sender: 'bot', text: `Hello! I am ${activeChat?.name || 'your AI'}. How can I help you today?` }
     ]);
@@ -143,14 +142,14 @@ export default function Page1() {
 
                   {/* Call Controls */}
                   <div className="flex gap-6 mt-16">
-                    <button className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:bg-white/20 transition-all">🔇</button>
+                    <button className="w-16 h-16 rounded-full bg-gray-700 dark:bg-gray-600 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:bg-white/20 transition-all shadow-lg">🔇</button>
                     <button
                       onClick={() => setIsCalling(false)}
-                      className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-xl shadow-lg shadow-red-500/40 hover:scale-110 transition-all"
+                      className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-xl shadow-lg shadow-black/20 hover:bg-red-700 hover:scale-110 transition-all"
                     >
                       📞
                     </button>
-                    <button className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:bg-white/20 transition-all">🔊</button>
+                    <button className="w-16 h-16 rounded-full bg-gray-700 dark:bg-gray-600 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:bg-white/20 transition-all">🔊</button>
                   </div>
                 </div>
               ) : (
