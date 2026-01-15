@@ -19,6 +19,7 @@ export default function Page1() {
   const [chatHistory, setChatHistory] = useState<LocalMessage[]>([
     { id: 1, sender: 'bot', text: 'Hello! How can I help you today?' }
   ])
+  const [isCalling, setIsCalling] = useState(false)
 
   const activeChat = conversations.find(c => c.id === selectedChatId)
 
@@ -118,52 +119,85 @@ export default function Page1() {
                     </div>
                   </div>
                 </div>
-                <button className="px-6 py-2.5 rounded-full bg-white/10 border border-white/20 text-sm font-bold hover:bg-white/20 transition-all">
+                <button
+                  onClick={() => setIsCalling(true)}
+                  className="px-6 py-2.5 rounded-full bg-white/10 border border-white/20 text-sm font-bold hover:bg-white/20 transition-all"
+                >
                   Voice Call
                 </button>
               </header>
-
-              <div className="flex-1 p-8 overflow-y-auto space-y-6">
-                {chatHistory.map((msg) => (
-                  <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[70%] p-5 rounded-[2rem] shadow-xl border border-white/20 
-                      ${msg.sender === 'me'
-                        ? 'bg-blue-600 text-white rounded-tr-none'
-                        : 'bg-white/90 dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-tl-none'}`}>
-                      {msg.text}
+              {isCalling ? (
+                /* --- CALLING SCREEN VIEW --- */
+                <div className="flex-1 flex flex-col items-center justify-center bg-gradient-to-b from-transparent to-blue-600/10 p-8">
+                  <div className="relative">
+                    {/* Animated Ring */}
+                    <div className="absolute inset-0 rounded-[3rem] bg-blue-500 animate-ping opacity-20" />
+                    <div className="w-40 h-40 rounded-[3rem] bg-gradient-to-tr from-blue-400 to-purple-500 shadow-2xl flex items-center justify-center text-6xl relative z-10">
+                      {/* You can use activeChat.avatar if you have it */}
+                      👤
                     </div>
                   </div>
-                ))}
 
-                {/* Add the loading indicator */}
-                {isTyping && activeChat && (
-                  <div className="flex justify-start items-center gap-2">
-                    {/* Small pulse icon */}
-                    <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-ping"></span>
-                    <p className="text-xs font-bold text-blue-500 uppercase tracking-widest">
-                      {activeChat.name} is typing...
-                    </p>
+                  <h2 className="text-3xl font-bold mt-8 text-gray-900 dark:text-white">{activeChat.name}</h2>
+                  <p className="text-blue-500 font-medium mt-2 animate-pulse uppercase tracking-[0.2em]">Calling...</p>
+
+                  {/* Call Controls */}
+                  <div className="flex gap-6 mt-16">
+                    <button className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:bg-white/20 transition-all">🔇</button>
+                    <button
+                      onClick={() => setIsCalling(false)}
+                      className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-xl shadow-lg shadow-red-500/40 hover:scale-110 transition-all"
+                    >
+                      📞
+                    </button>
+                    <button className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl hover:bg-white/20 transition-all">🔊</button>
                   </div>
-                )}
-              </div>
-              <footer className="p-6">
-                <div className="flex gap-3 bg-white/40 dark:bg-white/5 rounded-[2rem] border border-white/20 p-2 pl-6 backdrop-blur-xl">
-                  <input
-                    type="text"
-                    placeholder="Type your message here..."
-                    value={inputText} // <--- LINK STATE
-                    onChange={(e) => setInputText(e.target.value)} // <--- UPDATE STATE
-                    onKeyDown={(e) => e.key === 'Enter' && handleSend()} // <--- SEND ON ENTER
-                    className="flex-1 bg-transparent py-3 outline-none text-gray-900 dark:text-white placeholder-gray-500"
-                  />
-                  <button
-                    onClick={handleSend} // <--- LINK FUNCTION
-                    className="bg-blue-600 text-white px-8 py-3 rounded-[1.5rem] font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30"
-                  >
-                    Send
-                  </button>
                 </div>
-              </footer>
+              ) : (
+                <>
+                  <div className="flex-1 p-8 overflow-y-auto space-y-6">
+                    {chatHistory.map((msg) => (
+                      <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[70%] p-5 rounded-[2rem] shadow-xl border border-white/20 
+                      ${msg.sender === 'me'
+                            ? 'bg-blue-600 text-white rounded-tr-none'
+                            : 'bg-white/90 dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-tl-none'}`}>
+                          {msg.text}
+                        </div>
+                      </div>
+                    ))}
+
+                    {/* Add the loading indicator */}
+                    {isTyping && activeChat && (
+                      <div className="flex justify-start items-center gap-2">
+                        {/* Small pulse icon */}
+                        <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-ping"></span>
+                        <p className="text-xs font-bold text-blue-500 uppercase tracking-widest">
+                          {activeChat.name} is typing...
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <footer className="p-6">
+                    <div className="flex gap-3 bg-white/40 dark:bg-white/5 rounded-[2rem] border border-white/20 p-2 pl-6 backdrop-blur-xl">
+                      <input
+                        type="text"
+                        placeholder="Type your message here..."
+                        value={inputText} // <--- LINK STATE
+                        onChange={(e) => setInputText(e.target.value)} // <--- UPDATE STATE
+                        onKeyDown={(e) => e.key === 'Enter' && handleSend()} // <--- SEND ON ENTER
+                        className="flex-1 bg-transparent py-3 outline-none text-gray-900 dark:text-white placeholder-gray-500"
+                      />
+                      <button
+                        onClick={handleSend} // <--- LINK FUNCTION
+                        className="bg-blue-600 text-white px-8 py-3 rounded-[1.5rem] font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30"
+                      >
+                        Send
+                      </button>
+                    </div>
+                  </footer>
+                </>
+              )}
             </>
           ) : (
             /* EMPTY STATE: OPTIONS VIEW */
